@@ -1,5 +1,5 @@
 {
-  "name": "attendance-creator",
+  "name": "attendance-generator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,5 +15,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "homepage": "https://secretdataz.github.io/attendance-generator"
 }
