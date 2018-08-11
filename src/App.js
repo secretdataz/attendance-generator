@@ -21,8 +21,9 @@ const AttendanceDay = (props) => (
 
 class App extends Component {
   constructor(props) {
-    let now = dayjs()
     super(props)
+
+    let now = dayjs()
     this.state = {
       start_date: now.format(DATE_FORMAT),
       end_date: now.add(20, 'day').format(DATE_FORMAT),
@@ -33,6 +34,22 @@ class App extends Component {
     this.handleEndChange = this.handleEndChange.bind(this)
     this.changeItem = this.changeItem.bind(this)
     this.changeAmount = this.changeAmount.bind(this)
+  }
+
+  componentDidMount() {
+    if(typeof(Storage) === 'undefined')
+      return
+    
+    let items = localStorage.getItem('items')
+    if(items !== null) {
+      this.setState({
+        items: JSON.parse(items)
+      })
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem('items', JSON.stringify(this.state.items))
   }
 
   handleStartChange(e) {
