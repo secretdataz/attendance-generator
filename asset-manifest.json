@@ -1,6 +1,17 @@
 {
-  "main.css": "static/css/main.e4c159a8.css",
-  "main.css.map": "static/css/main.e4c159a8.css.map",
-  "main.js": "static/js/main.b09fc3da.js",
-  "main.js.map": "static/js/main.b09fc3da.js.map"
+  "files": {
+    "main.css": "/attendance-generator/static/css/main.654b0622.chunk.css",
+    "main.js": "/attendance-generator/static/js/main.47626c1a.chunk.js",
+    "main.js.map": "/attendance-generator/static/js/main.47626c1a.chunk.js.map",
+    "runtime~main.js": "/attendance-generator/static/js/runtime~main.fa590435.js",
+    "runtime~main.js.map": "/attendance-generator/static/js/runtime~main.fa590435.js.map",
+    "static/css/2.f4948e68.chunk.css": "/attendance-generator/static/css/2.f4948e68.chunk.css",
+    "static/js/2.75c7c23e.chunk.js": "/attendance-generator/static/js/2.75c7c23e.chunk.js",
+    "static/js/2.75c7c23e.chunk.js.map": "/attendance-generator/static/js/2.75c7c23e.chunk.js.map",
+    "index.html": "/attendance-generator/index.html",
+    "precache-manifest.4f97773fe0b09882d9cd82de7d7e830b.js": "/attendance-generator/precache-manifest.4f97773fe0b09882d9cd82de7d7e830b.js",
+    "service-worker.js": "/attendance-generator/service-worker.js",
+    "static/css/2.f4948e68.chunk.css.map": "/attendance-generator/static/css/2.f4948e68.chunk.css.map",
+    "static/css/main.654b0622.chunk.css.map": "/attendance-generator/static/css/main.654b0622.chunk.css.map"
+  }
 }
