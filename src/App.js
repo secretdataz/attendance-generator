@@ -133,7 +133,7 @@ class App extends Component {
             </Col>
           </Row>
         </Container>
-        <p>Attendance Generator v.{VERSION} &copy; 2018 Jittapan P. All rights reserved.</p>
+        <p>Attendance Generator v.{VERSION} &copy; 2018-2019 Jittapan P. All rights reserved.</p>
       </div>
     );
   }

@@ -42,7 +42,7 @@ export function generate_yaml(state) {
       Rewards:
 ${
     state.items.map((item, index) => 
-`       - Day: ${index+1}
+`        - Day: ${index+1}
           ItemId: ${item.item_id}
           Amount: ${item.amount}
 `).join('')
