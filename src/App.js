@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import dayjs from 'dayjs'
-import { ToastContainer, toast } from 'react-toastify'
 import { css, cx } from 'emotion'
-import 'react-toastify/dist/ReactToastify.min.css'
 import { generate_lua, generate_yaml } from './Generator'
 import VERSION from './version'
+import ReactGA from 'react-ga'
 
 const DATE_FORMAT = 'YYYY-MM-DD'
 const SAVE_VERSION = '1'
@@ -113,12 +112,24 @@ const App = () => {
       [items, startDate, endDate]
     )
 
-    const downloadLua = useCallback(() => download('CheckAttendance.lub', luaFile), [luaFile])
-    const downloadYaml = useCallback(() => download('attendance.yml', yamlFile), [yamlFile])
+    const downloadLua = useCallback(() => { 
+      ReactGA.event({
+        category: 'User',
+        action: 'Downloaded Lua file'
+      })
+      download('CheckAttendance.lub', luaFile)
+    }, [luaFile])
+  
+    const downloadYaml = useCallback(() => {
+      ReactGA.event({
+        category: 'User',
+        action: 'Downloaded YAML file'
+      })
+      download('attendance.yml', yamlFile)
+    }, [yamlFile])
 
     return (
       <div className={css`text-align: center;`}>
-        <ToastContainer/>
         <header className={css`
           background-color: #222;
           height: 100px;
