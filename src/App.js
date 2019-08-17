@@ -82,7 +82,7 @@ const App = () => {
         return
       }
     
-      let items = localStorage.getItem('items')
+      let items = localStorage.getItem('savedItems')
       const saveVersion = localStorage.getItem('saveVersion')
       try {
         if (saveVersion !== null && saveVersion === SAVE_VERSION) {
@@ -100,7 +100,7 @@ const App = () => {
 
     useEffect(() => {
       localStorage.setItem('saveVersion', SAVE_VERSION)
-      localStorage.setItem('items', JSON.stringify(items))
+      localStorage.setItem('savedItems', JSON.stringify(items))
     }, [items])
 
     const luaFile = useMemo(
