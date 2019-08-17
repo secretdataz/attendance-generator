@@ -1,17 +1,15 @@
 {
   "files": {
     "main.css": "/attendance-generator/static/css/main.84facf53.chunk.css",
-    "main.js": "/attendance-generator/static/js/main.32de9b1e.chunk.js",
-    "main.js.map": "/attendance-generator/static/js/main.32de9b1e.chunk.js.map",
+    "main.js": "/attendance-generator/static/js/main.77e2d375.chunk.js",
+    "main.js.map": "/attendance-generator/static/js/main.77e2d375.chunk.js.map",
     "runtime~main.js": "/attendance-generator/static/js/runtime~main.98f7042e.js",
     "runtime~main.js.map": "/attendance-generator/static/js/runtime~main.98f7042e.js.map",
-    "static/css/2.f4948e68.chunk.css": "/attendance-generator/static/css/2.f4948e68.chunk.css",
-    "static/js/2.0a69a833.chunk.js": "/attendance-generator/static/js/2.0a69a833.chunk.js",
-    "static/js/2.0a69a833.chunk.js.map": "/attendance-generator/static/js/2.0a69a833.chunk.js.map",
+    "static/js/2.84e95b8f.chunk.js": "/attendance-generator/static/js/2.84e95b8f.chunk.js",
+    "static/js/2.84e95b8f.chunk.js.map": "/attendance-generator/static/js/2.84e95b8f.chunk.js.map",
     "index.html": "/attendance-generator/index.html",
-    "precache-manifest.4e0a6c153a1e45f389edf56ed6238440.js": "/attendance-generator/precache-manifest.4e0a6c153a1e45f389edf56ed6238440.js",
+    "precache-manifest.da1df1093921644e6aee5dbda041e2ab.js": "/attendance-generator/precache-manifest.da1df1093921644e6aee5dbda041e2ab.js",
     "service-worker.js": "/attendance-generator/service-worker.js",
-    "static/css/2.f4948e68.chunk.css.map": "/attendance-generator/static/css/2.f4948e68.chunk.css.map",
     "static/css/main.84facf53.chunk.css.map": "/attendance-generator/static/css/main.84facf53.chunk.css.map"
   }
 }
