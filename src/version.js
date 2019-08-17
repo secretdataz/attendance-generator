@@ -1,3 +1,3 @@
-const VERSION = "0.0.2"
+const VERSION = "0.3.0"
 
 export default VERSION

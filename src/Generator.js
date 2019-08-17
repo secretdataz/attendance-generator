@@ -32,19 +32,19 @@ end
 
 export function generate_yaml(state) {
     return `# Generated with Secret's Attendance Generator version ${VERSION}
-  Header:
-  Type: ATTENDANCE_CONF
+Header:
+  Type: ATTENDANCE_DB
   Version: 1
   
-  Attendance:
-    - Start: ${date2int(state.start_date)}
-      End: ${date2int(state.end_date)}
-      Rewards:
+Attendance:
+  - Start: ${date2int(state.start_date)}
+    End: ${date2int(state.end_date)}
+    Rewards:
 ${
     state.items.map((item, index) => 
-`        - Day: ${index+1}
-          ItemId: ${item.item_id}
-          Amount: ${item.amount}
+`      - Day: ${index+1}
+        ItemId: ${item.item_id}
+        Amount: ${item.amount}
 `).join('')
 }
 `
