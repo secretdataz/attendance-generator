@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "private": true,
   "dependencies": {
-    "dayjs": "^1.7.5",
+    "dayjs": "^1.8.15",
     "emotion": "^10.0.14",
     "react": "^16.9.0",
     "react-dom": "^16.8.6",
