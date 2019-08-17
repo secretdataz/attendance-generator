@@ -36,7 +36,7 @@ Header:
   Type: ATTENDANCE_DB
   Version: 1
   
-Attendance:
+Body:
   - Start: ${date2int(state.start_date)}
     End: ${date2int(state.end_date)}
     Rewards:
