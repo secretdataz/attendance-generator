@@ -5,12 +5,12 @@ function date2int(date) {
     return dayjs(date).format('YYYYMMDD')
 }
 
-export function generate_lua(state) {
+export function generate_lua(items, start, end) {
     return `-- Generated with Secret's Attendance Generator version ${VERSION}
-Config = { StartDate = ${date2int(state.start_date)}, EndDate = ${date2int(state.end_date)} }
+Config = { StartDate = ${date2int(start)}, EndDate = ${date2int(end)} }
 Reward = {
     ${
-        state.items.map((item, index) => `{ ${index+1}, ${item.item_id}, ${item.amount} }` ).join(',\n    ')
+        items.map((item, index) => `{ ${index+1}, ${item.itemId}, ${item.amount} }` ).join(',\n    ')
     }
 }
 
@@ -30,20 +30,20 @@ end
 `
 }
 
-export function generate_yaml(state) {
+export function generate_yaml(items, start, end) {
     return `# Generated with Secret's Attendance Generator version ${VERSION}
 Header:
   Type: ATTENDANCE_DB
   Version: 1
   
 Body:
-  - Start: ${date2int(state.start_date)}
-    End: ${date2int(state.end_date)}
+  - Start: ${date2int(start)}
+    End: ${date2int(end)}
     Rewards:
 ${
-    state.items.map((item, index) => 
+    items.map((item, index) => 
 `      - Day: ${index+1}
-        ItemId: ${item.item_id}
+        ItemId: ${item.itemId}
         Amount: ${item.amount}
 `).join('')
 }

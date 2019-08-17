@@ -1,142 +1,204 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import dayjs from 'dayjs'
 import { ToastContainer, toast } from 'react-toastify'
-import { Container, Row, Col } from 'react-grid-system'
-import './App.css'
+import { css, cx } from 'emotion'
 import 'react-toastify/dist/ReactToastify.min.css'
-
 import { generate_lua, generate_yaml } from './Generator'
 import VERSION from './version'
 
 const DATE_FORMAT = 'YYYY-MM-DD'
+const SAVE_VERSION = '1'
+
+const FormGroup = css`
+padding-top: 2px;
+padding-bottom: 2px;
+margin: 5px;
+`;
+
+const Input = css`
+padding: 5px;
+border: 1px solid rgba(0,0,0,0.2);
+margin: 0 5px 0 5px;
+width: 65px;
+`
+
+const DateInput = css`
+width: 127px;
+`
+
+const PreviewContainer = css`
+width: 45%;
+height: 250px;
+`
+
+const PreviewText = css`
+width: 100%;
+height: 100%;
+`
+
+const DownloadButton = css`
+width: 100%;
+height: 30px;
+background: #00d1b2;
+border-radius: 4px;
+box-shadow: none;
+border: 1px solid transparent;
+:hover {
+  background: #00c4a7;
+}
+:active {
+  background: #00b89c;
+}
+`
 
 const AttendanceDay = (props) => (
-  <span className="day">
+  <div className={css`
+    margin: 5px;
+    box-sizing: border-box;
+    flex: 1 0 45%;
+  `}>
     <label>Day {props.index+1} ID</label>
-    <input type="number" value={props.entry.item_id} onChange={(e) => props.changeItem(e.target.value, props.index)} />
+    <input className={Input} type="number" value={props.entry.itemId} onChange={(e) => props.changeItem(e.target.value, props.index)} />
     <label>Amount</label>
-    <input type="number" value={props.entry.amount} onChange={(e) => props.changeAmount(e.target.value, props.index)} />
-  </span>
+    <input className={Input} type="number" value={props.entry.amount} onChange={(e) => props.changeAmount(e.target.value, props.index)} />
+  </div>
 )
 
-class App extends Component {
-  constructor(props) {
-    super(props)
+const App = () => {
+    const now = dayjs()
+    const [startDate, setStartDate] = useState(now.format(DATE_FORMAT))
+    const [endDate, setEndDate] = useState(now.format(DATE_FORMAT))
+    const [items, setItems] = useState([]);
+    const changeItemProperty = useCallback((key, value, index) => {
+      setItems([
+        ...items.slice(0, index),
+        { ...items[index], [key]: value },
+        ...items.slice(index+1)
+      ])
+    }, [items])
 
-    let now = dayjs()
-    this.state = {
-      start_date: now.format(DATE_FORMAT),
-      end_date: now.add(20, 'day').format(DATE_FORMAT),
-      items: Array(20).fill({ item_id: 501, amount: 1 })
-    }
-
-    this.handleStartChange = this.handleStartChange.bind(this)
-    this.handleEndChange = this.handleEndChange.bind(this)
-    this.changeItem = this.changeItem.bind(this)
-    this.changeAmount = this.changeAmount.bind(this)
-  }
-
-  componentDidMount() {
-    if(typeof(Storage) === 'undefined')
-      return
+    useEffect(() => {
+      if(typeof(Storage) === 'undefined') {
+        return
+      }
     
-    let items = localStorage.getItem('items')
-    if(items !== null) {
-      this.setState({
-        items: JSON.parse(items)
-      })
-    }
-  }
+      let items = localStorage.getItem('items')
+      const saveVersion = localStorage.getItem('saveVersion')
+      try {
+        if (saveVersion !== null && saveVersion === SAVE_VERSION) {
+          items = JSON.parse(items)
+        }
+      } catch {
+        items = Array(20).fill({ itemId: 501, amount: 1})
+      }
+      if (items !== null) {
+        setItems(items)
+      } else {
+        setItems(Array(20).fill({ itemId: 501, amount: 1 }))
+      }
+    }, [])
 
-  componentDidUpdate() {
-    localStorage.setItem('items', JSON.stringify(this.state.items))
-  }
+    useEffect(() => {
+      localStorage.setItem('saveVersion', SAVE_VERSION)
+      localStorage.setItem('items', JSON.stringify(items))
+    }, [items])
 
-  handleStartChange(e) {
-    this.setState({
-      start_date: e.target.value
-    })
-  }
+    const luaFile = useMemo(
+      () => generate_lua(items, startDate, endDate),
+      [items, startDate, endDate]
+    )
 
-  handleEndChange(e) {
-    let date = e.target.value
-    if(dayjs(date).isBefore(dayjs(this.state.start_date))) {
-      toast.error('Invalid option. End date is before start date.')
-      return
-    }
+    const yamlFile = useMemo(
+      () => generate_yaml(items, startDate, endDate),
+      [items, startDate, endDate]
+    )
 
-    this.setState({
-      end_date: e.target.value
-    })
-  }
+    const downloadLua = useCallback(() => download('CheckAttendance.lub', luaFile), [luaFile])
+    const downloadYaml = useCallback(() => download('attendance.yml', yamlFile), [yamlFile])
 
-  changeItem(item_id, index) {
-    this.setState((prevState) => ({
-      ...prevState,
-      items: [
-        ...prevState.items.slice(0, index),
-        { item_id, amount: prevState.items[index].amount },
-        ...prevState.items.slice(index+1)
-      ]
-    }))
-  }
-
-  changeAmount(amount, index) {
-    this.setState((prevState) => ({
-      ...prevState,
-      items: [
-        ...prevState.items.slice(0, index),
-        { item_id: prevState.items[index].item_id, amount },
-        ...prevState.items.slice(index+1)
-      ]
-    }))
-  }
-
-  render() {
     return (
-      <div className="App">
+      <div className={css`text-align: center;`}>
         <ToastContainer/>
-        <header className="App-header">
-          <h1 className="App-title">Attendance Generator</h1>
-          <h5>for rAthena and RO Client</h5>
+        <header className={css`
+          background-color: #222;
+          height: 100px;
+          padding: 20px;
+          color: white;
+        `}>
+          <h1 className={css`font-size: 1.5em; margin-bottom: 5px;`}>Attendance Generator v.{VERSION}</h1>
+          <h5 className={css`margin-top: 0; margin-bottom: 5px;`}>for rAthena and RO Client</h5>
+          <h6 className={css`margin-top: 10px;`}>&copy; 2018-2019 Jittapan P. All rights reserved.</h6>
         </header>
-        <Container className="container App-content">
-          <Row>
-            <Col md={6}>
-              <div className="form-group">
-                <label htmlFor="start">Start date:</label>
-                <input type="date" id="start" onChange={this.handleStartChange} value={this.state.start_date} />
-              </div>
-            </Col>
-            <Col md={6}>
-              <div className="form-group">
-                <label htmlFor="end">End date:</label>
-                <input type="date" id="end" onChange={this.handleEndChange} min={this.state.start_date} value={this.state.end_date} />
-              </div>
-            </Col>
-          </Row>
-          <Row>
-              {
-                this.state.items.map((entry, index) =>
-                  <Col md={6}>
-                    <AttendanceDay changeItem={this.changeItem} changeAmount={this.changeAmount} index={index} entry={entry} />
-                  </Col>
-                )
-              }
-          </Row>
-          <Row>
-            <Col sm={12}>
-              <textarea style={{ minWidth: "40%", height: "200px" }} value={generate_lua(this.state)} />
-            </Col>
-            <Col sm={12}>
-              <textarea style={{ minWidth: "40%", height: "200px" }} value={generate_yaml(this.state)} />
-            </Col>
-          </Row>
-        </Container>
-        <p>Attendance Generator v.{VERSION} &copy; 2018-2019 Jittapan P. All rights reserved.</p>
+        <div className={css`margin-top: 10px;`}>
+          <div className={css`
+            display: flex;
+            justify-content: center;
+          `}>
+            <div className={FormGroup}>
+              <label htmlFor="start">Start date:</label>
+              <input className={cx(Input, DateInput)} type="date" id="start" onChange={e => setStartDate(e.target.value)} value={startDate} />
+            </div>
+            <div className={FormGroup}>
+              <label htmlFor="end">End date:</label>
+              <input className={cx(Input, DateInput)} type="date" id="end" onChange={e => setEndDate(e.target.value)} min={startDate} value={endDate} />
+            </div>
+          </div>
+          <div className={css`
+            margin: 0 auto;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: center;
+            @media screen and (min-width: 640px) {
+              width: 640px;
+              flex-direction: row;
+            }
+          `}>
+            {
+              items.map((entry, index) =>
+                <AttendanceDay
+                  changeItem={(itemId, index) => changeItemProperty('itemId', itemId, index)}
+                  changeAmount={(itemId, index) => changeItemProperty('itemId', itemId, index)}
+                  index={index}
+                  entry={entry}
+                />
+              )
+            }
+          </div>
+        </div>
+        <div className={css`
+          margin: 10px auto 0 auto;
+          display: flex;
+          justify-content: space-around;
+        `}>
+          <div className={PreviewContainer}>
+            <h2>CheckAttendance.lub</h2>
+            <textarea className={PreviewText} value={luaFile} />
+            <button className={DownloadButton} onClick={downloadLua}>Download</button>
+          </div>
+          <div className={PreviewContainer}>
+            <h2>attendance.yml</h2>
+            <textarea className={PreviewText} value={yamlFile} />
+            <button className={DownloadButton} onClick={downloadYaml}>Download</button>
+          </div>
+        </div>
       </div>
-    );
-  }
+    )
+}
+
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }
 
 export default App;
