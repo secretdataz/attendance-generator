@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/attendance-generator/static/css/main.654b0622.chunk.css",
-    "main.js": "/attendance-generator/static/js/main.7bddc799.chunk.js",
-    "main.js.map": "/attendance-generator/static/js/main.7bddc799.chunk.js.map",
-    "runtime~main.js": "/attendance-generator/static/js/runtime~main.fa590435.js",
-    "runtime~main.js.map": "/attendance-generator/static/js/runtime~main.fa590435.js.map",
+    "main.css": "/attendance-generator/static/css/main.84facf53.chunk.css",
+    "main.js": "/attendance-generator/static/js/main.1f029d7a.chunk.js",
+    "main.js.map": "/attendance-generator/static/js/main.1f029d7a.chunk.js.map",
+    "runtime~main.js": "/attendance-generator/static/js/runtime~main.98f7042e.js",
+    "runtime~main.js.map": "/attendance-generator/static/js/runtime~main.98f7042e.js.map",
     "static/css/2.f4948e68.chunk.css": "/attendance-generator/static/css/2.f4948e68.chunk.css",
-    "static/js/2.75c7c23e.chunk.js": "/attendance-generator/static/js/2.75c7c23e.chunk.js",
-    "static/js/2.75c7c23e.chunk.js.map": "/attendance-generator/static/js/2.75c7c23e.chunk.js.map",
+    "static/js/2.0a69a833.chunk.js": "/attendance-generator/static/js/2.0a69a833.chunk.js",
+    "static/js/2.0a69a833.chunk.js.map": "/attendance-generator/static/js/2.0a69a833.chunk.js.map",
     "index.html": "/attendance-generator/index.html",
-    "precache-manifest.61b744202bd1c153b527109d082460da.js": "/attendance-generator/precache-manifest.61b744202bd1c153b527109d082460da.js",
+    "precache-manifest.07d7ac82174c3279564b4dc678a6df56.js": "/attendance-generator/precache-manifest.07d7ac82174c3279564b4dc678a6df56.js",
     "service-worker.js": "/attendance-generator/service-worker.js",
     "static/css/2.f4948e68.chunk.css.map": "/attendance-generator/static/css/2.f4948e68.chunk.css.map",
-    "static/css/main.654b0622.chunk.css.map": "/attendance-generator/static/css/main.654b0622.chunk.css.map"
+    "static/css/main.84facf53.chunk.css.map": "/attendance-generator/static/css/main.84facf53.chunk.css.map"
   }
 }
