@@ -21,7 +21,7 @@
   },
   "homepage": "https://secretdataz.github.io/attendance-generator",
   "devDependencies": {
-    "gh-pages": "^1.2.0"
+    "gh-pages": "^2.1.1"
   },
   "browserslist": {
     "production": [
