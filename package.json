@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "dayjs": "^1.8.16",
-    "emotion": "^10.0.17",
+    "emotion": "^10.0.23",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-ga": "^2.6.0",
