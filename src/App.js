@@ -171,7 +171,7 @@ const App = () => {
               items.map((entry, index) =>
                 <AttendanceDay
                   changeItem={(itemId, index) => changeItemProperty('itemId', itemId, index)}
-                  changeAmount={(itemId, index) => changeItemProperty('itemId', itemId, index)}
+                  changeAmount={(amount, index) => changeItemProperty('amount', amount, index)}
                   index={index}
                   entry={entry}
                 />
