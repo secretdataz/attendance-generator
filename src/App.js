@@ -138,7 +138,7 @@ const App = () => {
         `}>
           <h1 className={css`font-size: 1.5em; margin-bottom: 5px;`}>Attendance Generator v.{VERSION}</h1>
           <h5 className={css`margin-top: 0; margin-bottom: 5px;`}>for rAthena and RO Client</h5>
-          <h6 className={css`margin-top: 10px;`}>&copy; 2018-2019 Jittapan P. All rights reserved.</h6>
+          <h6 className={css`margin-top: 10px;`}>&copy; 2018-2020 Jittapan P. All rights reserved.</h6>
         </header>
         <div className={css`margin-top: 10px;`}>
           <div className={css`
