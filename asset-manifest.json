@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/attendance-generator/static/css/main.a2b7b0b6.chunk.css",
+    "main.js": "/attendance-generator/static/js/main.e4d3c523.chunk.js",
+    "main.js.map": "/attendance-generator/static/js/main.e4d3c523.chunk.js.map",
+    "runtime-main.js": "/attendance-generator/static/js/runtime-main.aac1b741.js",
+    "runtime-main.js.map": "/attendance-generator/static/js/runtime-main.aac1b741.js.map",
+    "static/js/2.697172dd.chunk.js": "/attendance-generator/static/js/2.697172dd.chunk.js",
+    "static/js/2.697172dd.chunk.js.map": "/attendance-generator/static/js/2.697172dd.chunk.js.map",
+    "index.html": "/attendance-generator/index.html",
+    "precache-manifest.688be23fd516e6892047f3c9c20088e1.js": "/attendance-generator/precache-manifest.688be23fd516e6892047f3c9c20088e1.js",
+    "service-worker.js": "/attendance-generator/service-worker.js",
+    "static/css/main.a2b7b0b6.chunk.css.map": "/attendance-generator/static/css/main.a2b7b0b6.chunk.css.map"
+  }
+}
