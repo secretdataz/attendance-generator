@@ -17,6 +17,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install Packages
       run: npm install
+    - name: Git config
+      run: git config --global user.name Secret && git config --global user.email secret@jittapan.app
     - name: Pre-deploy
       run: npm run predeploy
     - name: Deploy to GH Pages
